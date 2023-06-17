@@ -37,10 +37,40 @@ namespace RVGLKeystrokes
 
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
+            Button pressed = e.KeyCode switch
+            {
+                Keys.Up => AccelerateButton,
+                Keys.Down => ReverseButton,
+                Keys.Left => LeftButton,
+                Keys.Right => RightButton,
+                Keys.LControlKey => FireButton,
+                Keys.End => FlipButton,
+                Keys.Home => RepositionButton,
+                Keys.Delete => RearViewButton,
+                _ => null
+            };
+
+            if (pressed != null)
+                ButtonUtil.ActivateButton(pressed);
         }
 
         private void OnKeyUp(object sender, KeyEventArgs e)
         {
+            Button pressed = e.KeyCode switch
+            {
+                Keys.Up => AccelerateButton,
+                Keys.Down => ReverseButton,
+                Keys.Left => LeftButton,
+                Keys.Right => RightButton,
+                Keys.LControlKey => FireButton,
+                Keys.End => FlipButton,
+                Keys.Home => RepositionButton,
+                Keys.Delete => RearViewButton,
+                _ => null
+            };
+
+            if (pressed != null)
+                ButtonUtil.DeactivateButton(pressed);
         }
     }
 }

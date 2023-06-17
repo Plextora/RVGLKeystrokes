@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace RVGLKeystrokes.Utils
 {
@@ -11,11 +12,11 @@ namespace RVGLKeystrokes.Utils
             return null; // for now
         }
 
-        public void ActivateButton(Button button)
+        public static void ActivateButton(Button button)
         {
         }
 
-        public void DeactivateButton(Button button)
+        public static void DeactivateButton(Button button)
         {
         }
     }
