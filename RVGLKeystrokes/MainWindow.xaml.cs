@@ -3,8 +3,14 @@
  * Licensed under the GPL-3.0 license (https://www.gnu.org/licenses/gpl-3.0.en.html#license-text)
  */
 
+using System;
+using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Forms;
+using System.Windows.Media;
 using Gma.System.MouseKeyHook;
+using RVGLKeystrokes.Utils;
+using Button = System.Windows.Controls.Button;
 
 namespace RVGLKeystrokes
 {
@@ -13,9 +19,28 @@ namespace RVGLKeystrokes
     /// </summary>
     public partial class MainWindow : Window
     {
+        private IKeyboardMouseEvents _globalHook;
+
         public MainWindow()
         {
             InitializeComponent();
+            Subscribe();
+        }
+
+        public void Subscribe()
+        {
+            _globalHook = Hook.GlobalEvents();
+
+            _globalHook.KeyDown += OnKeyDown;
+            _globalHook.KeyUp += OnKeyUp;
+        }
+
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+        }
+
+        private void OnKeyUp(object sender, KeyEventArgs e)
+        {
         }
     }
 }
