@@ -30,6 +30,12 @@
     </Window.Resources>
 
     <Grid x:Name="WindowGrid">
+        <Canvas
+            x:Name="InvisibleCanvas"
+            Background="#01000000"
+            Cursor="SizeAll"
+            MouseLeftButtonDown="WindowMove"
+            ZIndex="-1" />
         <Button
             x:Name="AccelerateButton"
             Width="50"

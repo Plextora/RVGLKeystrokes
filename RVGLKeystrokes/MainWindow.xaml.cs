@@ -8,10 +8,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Input;
 using System.Windows.Media;
 using Gma.System.MouseKeyHook;
 using RVGLKeystrokes.Utils;
 using Button = System.Windows.Controls.Button;
+using KeyEventArgs = System.Windows.Forms.KeyEventArgs;
 
 namespace RVGLKeystrokes
 {
@@ -90,5 +92,7 @@ namespace RVGLKeystrokes
             if (pressed != null)
                 ButtonUtil.DeactivateButton(pressed);
         }
+
+        private void WindowMove(object sender, MouseButtonEventArgs e) => DragMove();
     }
 }
