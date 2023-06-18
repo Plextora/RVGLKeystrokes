@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 namespace RVGLKeystrokes.Utils
 {
@@ -36,6 +38,7 @@ namespace RVGLKeystrokes.Utils
                 "# 4rd line is to tell RVGL Keystrokes if you want to highlight the background or border when a key is pressed\n" +
                 "# For example, useborder:false would tell RVGLKeystrokes to highlight the background\n" +
                 "# useborder:true would tell RVGL Keystrokes to highlight the border\n" +
+                "# 5th line is for how thick the border is (if useborder is enabled)\n" +
                 "# Starting at line 5, the remaining lines have the name of the keystroke on the left of the colon, and\n" +
                 "# the keycode the keystroke is binded to on the right.\n" +
                 "# For example, the line \"acceleratekey:38\" tells RVGL Keystrokes that the accelerate keystroke\n" +
@@ -45,6 +48,7 @@ namespace RVGLKeystrokes.Utils
                 $"{ButtonUtil.DefaultPressedValue}\n" +
                 $"{ButtonUtil.DefaultForegroundValue}\n" +
                 "useborder:false\n" +
+                "borderthickness:2\n" +
                 "acceleratekey:38\n" +
                 "reversekey:40\n" +
                 "leftkey:37\n" +
@@ -59,18 +63,19 @@ namespace RVGLKeystrokes.Utils
 
         public static void LoadConfig()
         {
-            ButtonUtil.BackgroundBorderValue = ButtonUtil.HexToBrush(GetLine(12));
-            ButtonUtil.PressedValue = ButtonUtil.HexToBrush(GetLine(13));
-            ButtonUtil.ForegroundValue = ButtonUtil.HexToBrush(GetLine(14));
-            ButtonUtil.UseBorder = GetLine(15) == "useborder:true";
-            AccelerateKeyCode = GetKeyCode(GetLine(16));
-            ReverseKeyCode = GetKeyCode(GetLine(17));
-            LeftKeyCode = GetKeyCode(GetLine(18));
-            RightKeyCode = GetKeyCode(GetLine(19));
-            FireKeyCode = GetKeyCode(GetLine(20));
-            FlipKeyCode = GetKeyCode(GetLine(21));
-            RepositionKeyCode = GetKeyCode(GetLine(22));
-            RearKeyCode = GetKeyCode(GetLine(23));
+            ButtonUtil.BackgroundBorderValue = ButtonUtil.HexToBrush(GetLine(13));
+            ButtonUtil.PressedValue = ButtonUtil.HexToBrush(GetLine(14));
+            ButtonUtil.ForegroundValue = ButtonUtil.HexToBrush(GetLine(15));
+            ButtonUtil.UseBorder = GetLine(16) == "useborder:true";
+            ButtonUtil.BorderThickness = new Thickness(Convert.ToDouble(Regex.Match(GetLine(17), @"\d+").Value));
+            AccelerateKeyCode = GetKeyCode(GetLine(18));
+            ReverseKeyCode = GetKeyCode(GetLine(19));
+            LeftKeyCode = GetKeyCode(GetLine(20));
+            RightKeyCode = GetKeyCode(GetLine(21));
+            FireKeyCode = GetKeyCode(GetLine(22));
+            FlipKeyCode = GetKeyCode(GetLine(23));
+            RepositionKeyCode = GetKeyCode(GetLine(24));
+            RearKeyCode = GetKeyCode(GetLine(25));
         }
 
         public static string GetLine(int line)
