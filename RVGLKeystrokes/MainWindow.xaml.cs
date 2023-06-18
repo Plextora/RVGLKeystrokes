@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media;
@@ -25,6 +26,12 @@ namespace RVGLKeystrokes
         {
             InitializeComponent();
             Subscribe();
+            Config.InitConfig();
+            foreach (Button button in FindAllButtons(WindowGrid))
+            {
+                button.Background = ButtonUtil.BackgroundBorderValue;
+                button.Foreground = ButtonUtil.ForegroundValue;
+            }
         }
 
         public void Subscribe()
@@ -33,6 +40,17 @@ namespace RVGLKeystrokes
 
             _globalHook.KeyDown += OnKeyDown;
             _globalHook.KeyUp += OnKeyUp;
+        }
+
+        private static IEnumerable<Button> FindAllButtons(DependencyObject depObj)
+        {
+            if (depObj == null) yield return Enumerable.Empty<Button>() as Button;
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+            {
+                DependencyObject ithChild = VisualTreeHelper.GetChild(depObj, i);
+                if (ithChild is Button button) yield return button;
+                foreach (Button childOfChild in FindAllButtons(ithChild)) yield return childOfChild;
+            }
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)
