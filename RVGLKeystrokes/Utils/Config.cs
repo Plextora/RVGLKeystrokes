@@ -10,14 +10,14 @@ namespace RVGLKeystrokes.Utils
 {
     public class Config
     {
-        public static Keys AccelerateKeyCode;
-        public static Keys ReverseKeyCode;
-        public static Keys LeftKeyCode;
-        public static Keys RightKeyCode;
-        public static Keys FireKeyCode;
-        public static Keys FlipKeyCode;
-        public static Keys RepositionKeyCode;
-        public static Keys RearKeyCode;
+        public static Keys AccelerateKeyCode = Keys.Up;
+        public static Keys ReverseKeyCode = Keys.Down;
+        public static Keys LeftKeyCode = Keys.Left;
+        public static Keys RightKeyCode = Keys.Right;
+        public static Keys FireKeyCode = Keys.LControlKey;
+        public static Keys FlipKeyCode = Keys.End;
+        public static Keys RepositionKeyCode = Keys.Home;
+        public static Keys RearKeyCode = Keys.Delete;
 
         public static void InitConfig()
         {
