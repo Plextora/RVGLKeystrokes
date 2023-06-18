@@ -32,7 +32,7 @@
     <Grid x:Name="WindowGrid">
         <Canvas
             x:Name="InvisibleCanvas"
-            Background="#01000000"
+            Background="#00007f"
             Cursor="SizeAll"
             MouseLeftButtonDown="WindowMove"
             ZIndex="-1" />
