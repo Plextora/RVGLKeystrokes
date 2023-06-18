@@ -21,9 +21,9 @@ namespace RVGLKeystrokes.Utils
                 "# 1st line is for button background\n" +
                 "# 2nd line is for button background/border when pressed\n" +
                 "# 3rd line is for button foreground\n" +
-                "# 4rd line is to tell Evade Keystrokes if you want to highlight the background or border when a key is pressed\n" +
-                "# For example, useborder:false would tell Evade Keystrokes to highlight the background\n" +
-                "# useborder:true would tell Evade Keystrokes to highlight the border\n\n" +
+                "# 4rd line is to tell RVGLKeystrokes if you want to highlight the background or border when a key is pressed\n" +
+                "# For example, useborder:false would tell RVGLKeystrokes to highlight the background\n" +
+                "# useborder:true would tell RVGLKeystrokes to highlight the border\n\n" +
                 $"{ButtonUtil.DefaultBackgroundBorderValue}\n" +
                 $"{ButtonUtil.DefaultPressedValue}\n" +
                 $"{ButtonUtil.DefaultForegroundValue}\n" +
