@@ -39,7 +39,7 @@ namespace RVGLKeystrokes.Utils
                 "# For example, useborder:false would tell RVGLKeystrokes to highlight the background\n" +
                 "# useborder:true would tell RVGL Keystrokes to highlight the border\n" +
                 "# 5th line is for how thick the border is (if useborder is enabled)\n" +
-                "# Starting at line 5, the remaining lines have the name of the keystroke on the left of the colon, and\n" +
+                "# Starting at line 6, the remaining lines have the name of the keystroke on the left of the colon, and\n" +
                 "# the keycode the keystroke is binded to on the right.\n" +
                 "# For example, the line \"acceleratekey:38\" tells RVGL Keystrokes that the accelerate keystroke\n" +
                 "# (the keystroke with the up arrow) will trigger when a key with the keycode of \"38\" is pressed.\n" +
