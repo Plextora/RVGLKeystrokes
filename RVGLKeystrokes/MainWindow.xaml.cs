@@ -57,16 +57,18 @@ namespace RVGLKeystrokes
 
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
+            // I have absolutely NO idea how or why "var value when value" works, but it does.
+
             Button pressed = e.KeyCode switch
             {
-                Keys.Up => AccelerateButton,
-                Keys.Down => ReverseButton,
-                Keys.Left => LeftButton,
-                Keys.Right => RightButton,
-                Keys.LControlKey => FireButton,
-                Keys.End => FlipButton,
-                Keys.Home => RepositionButton,
-                Keys.Delete => RearViewButton,
+                var value when value == Config.AccelerateKeyCode => AccelerateButton,
+                var value when value == Config.ReverseKeyCode => ReverseButton,
+                var value when value == Config.LeftKeyCode => LeftButton,
+                var value when value == Config.RightKeyCode => RightButton,
+                var value when value == Config.FireKeyCode => FireButton,
+                var value when value == Config.FlipKeyCode => FlipButton,
+                var value when value == Config.RepositionKeyCode => RepositionButton,
+                var value when value == Config.RearKeyCode => RearViewButton,
                 _ => null
             };
 
@@ -78,14 +80,14 @@ namespace RVGLKeystrokes
         {
             Button pressed = e.KeyCode switch
             {
-                Keys.Up => AccelerateButton,
-                Keys.Down => ReverseButton,
-                Keys.Left => LeftButton,
-                Keys.Right => RightButton,
-                Keys.LControlKey => FireButton,
-                Keys.End => FlipButton,
-                Keys.Home => RepositionButton,
-                Keys.Delete => RearViewButton,
+                var value when value == Config.AccelerateKeyCode => AccelerateButton,
+                var value when value == Config.ReverseKeyCode => ReverseButton,
+                var value when value == Config.LeftKeyCode => LeftButton,
+                var value when value == Config.RightKeyCode => RightButton,
+                var value when value == Config.FireKeyCode => FireButton,
+                var value when value == Config.FlipKeyCode => FlipButton,
+                var value when value == Config.RepositionKeyCode => RepositionButton,
+                var value when value == Config.RearKeyCode => RearViewButton,
                 _ => null
             };
 

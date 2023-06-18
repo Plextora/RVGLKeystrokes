@@ -1,10 +1,22 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows.Controls;
+using System.Windows.Forms;
 
 namespace RVGLKeystrokes.Utils
 {
     public class Config
     {
+        public static Keys AccelerateKeyCode;
+        public static Keys ReverseKeyCode;
+        public static Keys LeftKeyCode;
+        public static Keys RightKeyCode;
+        public static Keys FireKeyCode;
+        public static Keys FlipKeyCode;
+        public static Keys RepositionKeyCode;
+        public static Keys RearKeyCode;
+
         public static void InitConfig()
         {
             if (!File.Exists("config.txt"))
@@ -21,23 +33,44 @@ namespace RVGLKeystrokes.Utils
                 "# 1st line is for button background\n" +
                 "# 2nd line is for button background/border when pressed\n" +
                 "# 3rd line is for button foreground\n" +
-                "# 4rd line is to tell RVGLKeystrokes if you want to highlight the background or border when a key is pressed\n" +
+                "# 4rd line is to tell RVGL Keystrokes if you want to highlight the background or border when a key is pressed\n" +
                 "# For example, useborder:false would tell RVGLKeystrokes to highlight the background\n" +
-                "# useborder:true would tell RVGLKeystrokes to highlight the border\n\n" +
+                "# useborder:true would tell RVGL Keystrokes to highlight the border\n" +
+                "# Starting at line 5, the remaining lines have the name of the keystroke on the left of the colon, and\n" +
+                "# the keycode the keystroke is binded to on the right.\n" +
+                "# For example, the line \"acceleratekey:38\" tells RVGL Keystrokes that the accelerate keystroke\n" +
+                "# (the keystroke with the up arrow) will trigger when a key with the keycode of \"38\" is pressed.\n" +
+                "# You can view the keycode of every key supported by Windows at this URL: https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.keys?view=netframework-4.8#fields\n" +
                 $"{ButtonUtil.DefaultBackgroundBorderValue}\n" +
                 $"{ButtonUtil.DefaultPressedValue}\n" +
                 $"{ButtonUtil.DefaultForegroundValue}\n" +
-                "useborder:false";
+                "useborder:false\n" +
+                "acceleratekey:38\n" +
+                "reversekey:40\n" +
+                "leftkey:37\n" +
+                "rightkey:39\n" +
+                "firekey:162\n" +
+                "flipkey:35\n" +
+                "repositionkey:36\n" +
+                "rearkey:46";
 
             File.WriteAllText("config.txt", text);
         }
 
         public static void LoadConfig()
         {
-            ButtonUtil.BackgroundBorderValue = ButtonUtil.HexToBrush(GetLine(8));
-            ButtonUtil.PressedValue = ButtonUtil.HexToBrush(GetLine(9));
-            ButtonUtil.ForegroundValue = ButtonUtil.HexToBrush(GetLine(10));
-            ButtonUtil.UseBorder = GetLine(11) == "useborder:true";
+            ButtonUtil.BackgroundBorderValue = ButtonUtil.HexToBrush(GetLine(12));
+            ButtonUtil.PressedValue = ButtonUtil.HexToBrush(GetLine(13));
+            ButtonUtil.ForegroundValue = ButtonUtil.HexToBrush(GetLine(14));
+            ButtonUtil.UseBorder = GetLine(15) == "useborder:true";
+            AccelerateKeyCode = GetKeyCode(GetLine(16));
+            ReverseKeyCode = GetKeyCode(GetLine(17));
+            LeftKeyCode = GetKeyCode(GetLine(18));
+            RightKeyCode = GetKeyCode(GetLine(19));
+            FireKeyCode = GetKeyCode(GetLine(20));
+            FlipKeyCode = GetKeyCode(GetLine(21));
+            RepositionKeyCode = GetKeyCode(GetLine(22));
+            RearKeyCode = GetKeyCode(GetLine(23));
         }
 
         public static string GetLine(int line)
@@ -47,5 +80,7 @@ namespace RVGLKeystrokes.Utils
                 sr.ReadLine();
             return sr.ReadLine();
         }
+
+        private static Keys GetKeyCode(string keyCode) => (Keys)int.Parse(Regex.Match(keyCode, @"\d+").Value);
     }
 }
